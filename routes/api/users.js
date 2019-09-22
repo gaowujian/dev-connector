@@ -1,3 +1,4 @@
+
 const express = require("express")
 const router = express.Router()
 const { check, validationResult, body } = require("express-validator")
@@ -61,7 +62,7 @@ router.post(
       })
     
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
       res.status(500).send("server error")
     }
   }

@@ -4,12 +4,13 @@
   "description": "social network for developers",
   "main": "server.js",
   "scripts": {
-    "start":"node server",
-    "server":"nodemon server"
+    "start": "node server",
+    "server": "nodemon server"
   },
   "author": "Tony",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.2.2",
     "express": "^4.17.1",
