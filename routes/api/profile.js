@@ -291,6 +291,8 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 
 router.get("/github/:username", async (req, res) => {
   try {
+    // using request to get data
+
     // const options = {
     //   uri: `https://api.github.com/users/${
     //     req.params.username
