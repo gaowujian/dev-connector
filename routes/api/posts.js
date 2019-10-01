@@ -171,6 +171,7 @@ router.post(
 
 router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
   try {
+    
     const post = await Post.findById(req.params.id)
     // pull out ocmment
     const comment = post.comments.find(comment => comment.id === req.params.comment_id)
