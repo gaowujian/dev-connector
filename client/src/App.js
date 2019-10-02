@@ -18,7 +18,6 @@ if (localStorage.token) {
 }
 
 function App() {
-
   // second argument as [] make sure it only run once
   // when we load the app, we already have a token in our request header
   useEffect(() => {

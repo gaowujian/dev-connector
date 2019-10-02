@@ -1,19 +1,22 @@
 import React, { Fragment, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import { setAlert } from "../../actions/alert"
 import { register } from "../../actions/auth"
 import PropTypes from "prop-types"
 
-function Register({ setAlert, register }) {
+function Register({ setAlert, register, isAuthenticated }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     password2: ""
   })
+
   const { name, email, password, password2 } = formData
+
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+
   const onSubmit = e => {
     e.preventDefault()
     if (password !== password2) {
@@ -22,6 +25,12 @@ function Register({ setAlert, register }) {
       register({ name, email, password })
     }
   }
+
+  // Redirect if loggin
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />
+  }
+
   return (
     <Fragment>
       <h1 className="large text-primary">Sign Up</h1>
@@ -36,7 +45,6 @@ function Register({ setAlert, register }) {
             name="name"
             onChange={e => onChange(e)}
             value={name}
-            
           />
         </div>
         <div className="form-group">
@@ -58,7 +66,6 @@ function Register({ setAlert, register }) {
             name="password"
             onChange={e => onChange(e)}
             value={password}
-            
           />
         </div>
         <div className="form-group">
@@ -68,7 +75,6 @@ function Register({ setAlert, register }) {
             name="password2"
             onChange={e => onChange(e)}
             value={password2}
-           
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -82,10 +88,17 @@ function Register({ setAlert, register }) {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+const mapDispatchToProps = { setAlert, register }
+
 export default connect(
-  null,
-  { setAlert, register }
+  mapStateToProps,
+  mapDispatchToProps
 )(Register)

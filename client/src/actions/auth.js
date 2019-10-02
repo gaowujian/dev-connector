@@ -1,8 +1,14 @@
 import axios from "axios"
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR } from "./types"
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL
+} from "./types"
 import { setAlert } from "../actions/alert"
 import setAuthToken from "../utils/setAuthToken"
-
 
 export const loadUser = () => async dispatch => {
   // check if we have token stored in our localstorage
@@ -10,7 +16,7 @@ export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }
-  
+
   try {
     const res = await axios.get("/api/auth")
     dispatch({
@@ -41,6 +47,9 @@ export const register = ({ name, email, password }) => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     })
+
+    // 获取token
+    dispatch(loadUser())
   } catch (err) {
     const errors = err.response.data.errors
     if (errors) {
@@ -50,6 +59,29 @@ export const register = ({ name, email, password }) => async dispatch => {
     }
     dispatch({
       type: REGISTER_FAIL
+    })
+  }
+}
+
+export const login = ({ email, password }) => async dispatch => {
+  const body = { email, password }
+  try {
+    const res = await axios.post("/api/auth", body)
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
+    })
+    // 获取token
+    dispatch(loadUser())
+  } catch (err) {
+    const errors = err.response.data.errors
+    if (errors) {
+      errors.forEach(error => {
+        dispatch(setAlert(error.msg, "danger"))
+      })
+    }
+    dispatch({
+      type: LOGIN_FAIL
     })
   }
 }
