@@ -17,7 +17,7 @@ router.get("/", auth, async (req, res) => {
     const user = await User.findById(req.user.id).select({ password: 0 })
     res.json(user)
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(500).send("Server Error")
   }
 })
@@ -59,7 +59,7 @@ router.post(
         res.json({ token })
       })
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
       res.status(500).send("server error")
     }
   }

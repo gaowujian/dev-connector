@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from "react"
-import axios from "axios"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { setAlert } from "../../actions/alert"
-function Register(props) {
+import { register } from "../../actions/auth"
+import PropTypes from "prop-types"
+
+function Register({ setAlert, register }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,11 +14,12 @@ function Register(props) {
   })
   const { name, email, password, password2 } = formData
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault()
     if (password !== password2) {
-      props.setAlert("Passwords do not match", "danger")
+      setAlert("Passwords do not match", "danger")
     } else {
+      register({ name, email, password })
     }
   }
   return (
@@ -33,7 +36,7 @@ function Register(props) {
             name="name"
             onChange={e => onChange(e)}
             value={name}
-            required
+            
           />
         </div>
         <div className="form-group">
@@ -55,7 +58,7 @@ function Register(props) {
             name="password"
             onChange={e => onChange(e)}
             value={password}
-            minLength="6"
+            
           />
         </div>
         <div className="form-group">
@@ -65,7 +68,7 @@ function Register(props) {
             name="password2"
             onChange={e => onChange(e)}
             value={password2}
-            minLength="6"
+           
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -76,7 +79,13 @@ function Register(props) {
     </Fragment>
   )
 }
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
+}
+
 export default connect(
   null,
-  { setAlert }
+  { setAlert, register }
 )(Register)
