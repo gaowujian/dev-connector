@@ -21,7 +21,7 @@ router.get("/", auth, async (req, res) => {
     res.status(500).send("Server Error")
   }
 })
-// @ route GET api/auth
+// @ route POST api/auth
 // @ desc   authenticate user and get token
 // @ access public
 router.post(

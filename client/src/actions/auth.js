@@ -5,7 +5,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from "./types"
 import { setAlert } from "../actions/alert"
 import setAuthToken from "../utils/setAuthToken"
@@ -19,6 +20,7 @@ export const loadUser = () => async dispatch => {
 
   try {
     const res = await axios.get("/api/auth")
+
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -63,10 +65,12 @@ export const register = ({ name, email, password }) => async dispatch => {
   }
 }
 
-export const login = ({ email, password }) => async dispatch => {
+export const login = (email, password) => async dispatch => {
   const body = { email, password }
+
   try {
     const res = await axios.post("/api/auth", body)
+    console.log(res.data)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -74,6 +78,7 @@ export const login = ({ email, password }) => async dispatch => {
     // 获取token
     dispatch(loadUser())
   } catch (err) {
+    console.log(err.message)
     const errors = err.response.data.errors
     if (errors) {
       errors.forEach(error => {
@@ -85,3 +90,6 @@ export const login = ({ email, password }) => async dispatch => {
     })
   }
 }
+
+// LoOUT / Clear profile
+export const logout = () => dispatch => dispatch({ type: LOGOUT })

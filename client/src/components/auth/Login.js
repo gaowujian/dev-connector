@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import { login } from "../../actions/auth"
+
 function Login({ isAuthenticated, login }) {
   // localState
   const [formData, setFormData] = useState({
@@ -56,6 +57,7 @@ function Login({ isAuthenticated, login }) {
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign up</Link>
       </p>
+      
     </Fragment>
   )
 }
@@ -75,3 +77,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Login)
+
+
+
