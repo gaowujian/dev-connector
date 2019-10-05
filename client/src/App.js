@@ -7,6 +7,7 @@ import Register from "./components/auth/Register"
 import Alert from "./components/layout/Alert"
 import Dashboard from "./components/dashboard/Dashboard"
 import PrivateRoute from "./components/routing/PrivateRoute"
+import CreateProfile from "./components/Profile-forms/CreateProfile"
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { loadUser } from "./actions/auth"
@@ -14,6 +15,7 @@ import setAuthToken from './utils/setAuthToken'
 // redux
 import { Provider } from "react-redux"
 import store from "./store"
+
 
 // check if we have token stored in our localStorage, if it does, we set the header with token all the time
 if (localStorage.token) {
@@ -38,6 +40,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
+            <PrivateRoute path="/create-profile" component={CreateProfile}></PrivateRoute>
           </Switch>
         </div>
       </Router>

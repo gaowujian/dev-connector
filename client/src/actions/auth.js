@@ -6,7 +6,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  CLEAR_PROFILE
 } from "./types"
 import { setAlert } from "../actions/alert"
 import setAuthToken from "../utils/setAuthToken"
@@ -70,7 +71,6 @@ export const login = (email, password) => async dispatch => {
 
   try {
     const res = await axios.post("/api/auth", body)
-    console.log(res.data)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -92,4 +92,7 @@ export const login = (email, password) => async dispatch => {
 }
 
 // LoOUT / Clear profile
-export const logout = () => dispatch => dispatch({ type: LOGOUT })
+export const logout = () => dispatch => {
+  dispatch({ type: CLEAR_PROFILE })
+  dispatch({ type: LOGOUT })
+}

@@ -1,7 +1,7 @@
 const express = require("express")
 
 const app = express()
-
+var morgan = require('morgan')
 const PORT = process.env.PORT || 5000
 
 const mongoDB = require("./config/db")
@@ -9,7 +9,9 @@ const mongoDB = require("./config/db")
 mongoDB()
 
 // init middleware
+
 app.use(express.json({extended:false}))
+app.use(morgan('dev'))
 
 app.get("/",(req,res) => {
   res.send("the backend is working")
