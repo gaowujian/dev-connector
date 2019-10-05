@@ -16,6 +16,8 @@ import setAuthToken from './utils/setAuthToken'
 import { Provider } from "react-redux"
 import store from "./store"
 import EditProfile from "./components/Profile-forms/EditProfile"
+import AddExperience from "./components/Profile-forms/AddExperience"
+import AddEducation from "./components/Profile-forms/AddEducation"
 
 
 // check if we have token stored in our localStorage, if it does, we set the header with token all the time
@@ -43,6 +45,8 @@ function App() {
             <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
             <PrivateRoute path="/create-profile" component={CreateProfile}></PrivateRoute>
             <PrivateRoute path="/edit-profile" component={EditProfile}></PrivateRoute>
+            <PrivateRoute path="/add-experience" component={AddExperience}></PrivateRoute>
+            <PrivateRoute path="/add-education" component={AddEducation}></PrivateRoute>
           </Switch>
         </div>
       </Router>
