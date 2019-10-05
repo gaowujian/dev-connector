@@ -24,10 +24,10 @@ export const createProfile = (formData, history, edit = false) => async dispatch
       type: GET_PROFILE,
       payload: res.data
     })
-    dispatch(setAlert(edit ? "Profile update" : "Profile created"))
+    dispatch(setAlert(edit ? "Profile update" : "Profile created", "success"))
     // cant user redirect in action, instead we use history push
     if (!edit) {
-      history.push('./dashboard')
+      history.push("./dashboard")
     }
   } catch (err) {
     const errors = err.response.data.errors
@@ -43,4 +43,3 @@ export const createProfile = (formData, history, edit = false) => async dispatch
     })
   }
 }
-
