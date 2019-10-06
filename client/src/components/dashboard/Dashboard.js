@@ -5,12 +5,13 @@ import { getCurrentProfile } from "../../actions/profile"
 import { Link } from "react-router-dom"
 import Spinner from "../layout/Spinner"
 import DashboardAction from "./DashboardAction"
+import Experience from "./Experience"
+import Education from "./Education"
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile()
   }, [])
-  
 
   return loading && profile === null ? (
     <Spinner />
@@ -21,7 +22,11 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
         <i className="fas fa-user">Welcome {user && user.name}</i>
       </p>
       {profile !== null ? (
-        <Fragment><DashboardAction></DashboardAction></Fragment>
+        <Fragment>
+          <DashboardAction />
+          <Experience experience = {profile.experience}/>
+          <Education education={profile.education}/>
+        </Fragment>
       ) : (
         <Fragment>
           <p>You have not yet setup a profile, please add some info</p>
