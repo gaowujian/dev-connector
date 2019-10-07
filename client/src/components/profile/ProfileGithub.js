@@ -10,7 +10,7 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
   }, [getGithubRepos])
 
   return (
-    <div className="profile-girhub">
+    <div className="profile-github">
       <h2 className="text-primary my-1">Github repos</h2>
       {repos === null ? (
         <Spinner />
@@ -27,6 +27,14 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
                   {repo.name}
                 </a>
               </h4>
+              <p>{repo.description}</p>
+            </div>
+            <div>
+              <ul>
+                <li className="badge badge-primary">Stars:{repo.stargazers_count}</li>
+                <li className="badge badge-dark">Watchers:{repo.watchers_count}</li>
+                <li className="badge badge-light">Forks:{repo.forks_count}</li>
+              </ul>
             </div>
           </div>
         ))
