@@ -7,7 +7,7 @@ import Register from "./components/auth/Register"
 import Alert from "./components/layout/Alert"
 import Dashboard from "./components/dashboard/Dashboard"
 import PrivateRoute from "./components/routing/PrivateRoute"
-import CreateProfile from "./components/Profile-forms/CreateProfile"
+import CreateProfile from "./components/profile-forms/CreateProfile"
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { loadUser } from "./actions/auth"
@@ -15,9 +15,10 @@ import setAuthToken from './utils/setAuthToken'
 // redux
 import { Provider } from "react-redux"
 import store from "./store"
-import EditProfile from "./components/Profile-forms/EditProfile"
-import AddExperience from "./components/Profile-forms/AddExperience"
-import AddEducation from "./components/Profile-forms/AddEducation"
+import EditProfile from "./components/profile-forms/EditProfile"
+import AddExperience from "./components/profile-forms/AddExperience"
+import AddEducation from "./components/profile-forms/AddEducation"
+import Profiles from "./components/profiles/Profiles"
 
 
 // check if we have token stored in our localStorage, if it does, we set the header with token all the time
@@ -42,6 +43,7 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/profiles" component={Profiles} />
             <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
             <PrivateRoute path="/create-profile" component={CreateProfile}></PrivateRoute>
             <PrivateRoute path="/edit-profile" component={EditProfile}></PrivateRoute>
