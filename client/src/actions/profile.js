@@ -45,6 +45,7 @@ export const getProfileById = (userId) => async dispatch => {
       payload: res.data
     })
   } catch (err) {
+    console.log(err.message)
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
