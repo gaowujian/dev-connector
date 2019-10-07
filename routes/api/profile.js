@@ -75,11 +75,11 @@ router.post(
 
     // build social object
     profileFields.social = {}
-    if (youtube) profileFields.youtube = youtube
-    if (twitter) profileFields.twitter = twitter
-    if (facebook) profileFields.facebook = facebook
-    if (linkedin) profileFields.linkedin = linkedin
-    if (instagram) profileFields.instagram = instagram
+    if (youtube) profileFields.social.youtube = youtube
+    if (twitter) profileFields.social.twitter = twitter
+    if (facebook) profileFields.social.facebook = facebook
+    if (linkedin) profileFields.social.linkedin = linkedin
+    if (instagram) profileFields.social.instagram = instagram
 
     try {
       let profile = await Profile.findOne({ user: req.user.id })
@@ -125,7 +125,7 @@ router.get("/", async (req, res) => {
 
 router.get("/user/:user_id", async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.params.user_id })
+    const profile = await Profile.findOne({ user: req.params.user_id }).populate("user", ["name", "avatar"])
     if (!profile) return res.json({ msg: "there is no profile for this user" })
     res.json(profile)
   } catch (err) {

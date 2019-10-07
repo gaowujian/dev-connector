@@ -33,7 +33,8 @@ function EditProfile({
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.status,
       skills: loading || !profile.skills ? "" : profile.skills,
-      githubusername: loading || !profile.githubusername ? "" : profile.githubusername,
+      githubusername:
+        loading || !profile.githubusername ? "" : profile.githubusername,
       bio: loading || !profile.bio ? "" : profile.bio,
       twitter: loading || !profile.social ? "" : profile.socialtwitter,
       facebook: loading || !profile.social ? "" : profile.social.facebook,
@@ -41,7 +42,7 @@ function EditProfile({
       youtube: loading || !profile.social ? "" : profile.social.youtube,
       instagram: loading || !profile.social ? "" : profile.social.instagram
     })
-  }, [loading,getCurrentProfile])
+  }, [loading, getCurrentProfile])
 
   const [displaySocialInputs, setdisplaySocialInputs] = useState(false)
 
@@ -60,7 +61,8 @@ function EditProfile({
     instagram
   } = formData
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value })
 
   const onSubmit = e => {
     e.preventDefault()
@@ -71,7 +73,8 @@ function EditProfile({
     <Fragment>
       <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user"></i> Let's get some information to make your profile stand out
+        <i className="fas fa-user"></i> Let's get some information to make your
+        profile stand out
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>
@@ -87,7 +90,9 @@ function EditProfile({
             <option value="Intern">Intern</option>
             <option value="Other">Other</option>
           </select>
-          <small className="form-text">Give us an idea of where you are at in your career</small>
+          <small className="form-text">
+            Give us an idea of where you are at in your career
+          </small>
         </div>
         <div className="form-group">
           <input
@@ -97,7 +102,9 @@ function EditProfile({
             value={company}
             onChange={e => onChange(e)}
           />
-          <small className="form-text">Could be your own company or one you work for</small>
+          <small className="form-text">
+            Could be your own company or one you work for
+          </small>
         </div>
         <div className="form-group">
           <input
@@ -107,7 +114,9 @@ function EditProfile({
             value={website}
             onChange={e => onChange(e)}
           />
-          <small className="form-text">Could be your own or a company website</small>
+          <small className="form-text">
+            Could be your own or a company website
+          </small>
         </div>
         <div className="form-group">
           <input
@@ -117,7 +126,9 @@ function EditProfile({
             value={location}
             onChange={e => onChange(e)}
           />
-          <small className="form-text">City & state suggested (eg. Boston, MA)</small>
+          <small className="form-text">
+            City & state suggested (eg. Boston, MA)
+          </small>
         </div>
         <div className="form-group">
           <input
@@ -140,7 +151,8 @@ function EditProfile({
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            If you want your latest repos and a Github link, include your username
+            If you want your latest repos and a Github link, include your
+            username
           </small>
         </div>
         <div className="form-group">
