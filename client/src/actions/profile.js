@@ -46,10 +46,10 @@ export const getProfileById = (userId) => async dispatch => {
     })
   } catch (err) {
     console.log(err.message)
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    })
+    // dispatch({
+    //   type: PROFILE_ERROR,
+    //   payload: { msg: err.response.statusText, status: err.response.status }
+    // })
   }
 }
 
@@ -74,6 +74,7 @@ export const getGithubRepos = (username) => async dispatch => {
 export const createProfile = (formData, history, edit = false) => async dispatch => {
   try {
     const res = await axios.post("/api/profile", formData)
+  
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -84,6 +85,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
       history.push("./dashboard")
     }
   } catch (err) {
+    console.error(err.message)
     const errors = err.response.data.errors
     if (errors) {
       errors.forEach(error => {

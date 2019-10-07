@@ -16,10 +16,10 @@ const config = require("config")
 router.get("/me", auth, async (req, res) => {
   try {
     // get data from user including name and avatar
-    const profile = await Profile.findOne({ user: req.user.id }).populate("user", [
-      "name",
-      "avatar"
-    ])
+    const profile = await Profile.findOne({ user: req.user.id }).populate(
+      "user",
+      ["name", "avatar"]
+    )
     if (!profile) {
       return res.status(400).json({ msg: "there is no profile for this user" })
     }
@@ -51,7 +51,7 @@ router.post(
     const {
       company,
       website,
-      locaiton,
+      location,
       bio,
       status,
       githubusername,
@@ -62,16 +62,18 @@ router.post(
       instagram,
       linkedin
     } = req.body
+
     // build profile object
     const profileFields = {}
     profileFields.user = req.user.id
     if (company) profileFields.company = company
     if (website) profileFields.website = website
-    if (locaiton) profileFields.locaiton = locaiton
+    if (location) profileFields.location = location
     if (bio) profileFields.bio = bio
     if (status) profileFields.status = status
     if (githubusername) profileFields.githubusername = githubusername
-    if (skills) profileFields.skills = skills.split(",").map(skill => skill.trim())
+    if (skills)
+      profileFields.skills = skills.split(",").map(skill => skill.trim())
 
     // build social object
     profileFields.social = {}
@@ -84,14 +86,16 @@ router.post(
     try {
       let profile = await Profile.findOne({ user: req.user.id })
       if (profile) {
-        update = await Profile.findOneAndUpdate(
+        profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
         )
-
         return res.json(profile)
       }
+
+  
+
       // create a new profile
       profile = new Profile(profileFields)
       await profile.save()
@@ -125,7 +129,9 @@ router.get("/", async (req, res) => {
 
 router.get("/user/:user_id", async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.params.user_id }).populate("user", ["name", "avatar"])
+    const profile = await Profile.findOne({
+      user: req.params.user_id
+    }).populate("user", ["name", "avatar"])
     if (!profile) return res.json({ msg: "there is no profile for this user" })
     res.json(profile)
   } catch (err) {
@@ -180,7 +186,15 @@ router.put(
     if (!errors.isEmpty) {
       return res.status(400).json({ errors: errors.array() })
     }
-    const { title, company, location, from, to, current, description } = req.body
+    const {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description
+    } = req.body
     const newExp = {
       title,
       company,
@@ -210,7 +224,9 @@ router.delete("/experience/:exp_id", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id })
     // get the remove index
-    const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id)
+    const removeIndex = profile.experience
+      .map(item => item.id)
+      .indexOf(req.params.exp_id)
 
     profile.experience.splice(removeIndex, 1)
     await profile.save()
@@ -247,7 +263,15 @@ router.put(
     if (!errors.isEmpty) {
       return res.status(400).json({ errors: errors.array() })
     }
-    const { school, degree, fieldofstudy, from, to, current, description } = req.body
+    const {
+      school,
+      degree,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description
+    } = req.body
     const newEdu = {
       school,
       degree,
@@ -278,7 +302,9 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id })
     // get the remove index
-    const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id)
+    const removeIndex = profile.education
+      .map(item => item.id)
+      .indexOf(req.params.edu_id)
 
     profile.education.splice(removeIndex, 1)
     await profile.save()
