@@ -19,6 +19,7 @@ import EditProfile from "./components/profile-forms/EditProfile"
 import AddExperience from "./components/profile-forms/AddExperience"
 import AddEducation from "./components/profile-forms/AddEducation"
 import Profiles from "./components/profiles/Profiles"
+import Profile from "./components/profile/Profile"
 
 
 // check if we have token stored in our localStorage, if it does, we set the header with token all the time
@@ -33,6 +34,7 @@ function App() {
     store.dispatch(loadUser())
   },[])
 
+
   return (
     <Provider store={store}>
       <Router>
@@ -41,14 +43,15 @@ function App() {
         <div className="container">
           <Alert />
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/profiles" component={Profiles} />
-            <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
-            <PrivateRoute path="/create-profile" component={CreateProfile}></PrivateRoute>
-            <PrivateRoute path="/edit-profile" component={EditProfile}></PrivateRoute>
-            <PrivateRoute path="/add-experience" component={AddExperience}></PrivateRoute>
-            <PrivateRoute path="/add-education" component={AddEducation}></PrivateRoute>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/profile/:id" component={Profile} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard}></PrivateRoute>
+            <PrivateRoute exact path="/create-profile" component={CreateProfile}></PrivateRoute>
+            <PrivateRoute exact path="/edit-profile" component={EditProfile}></PrivateRoute>
+            <PrivateRoute exact path="/add-experience" component={AddExperience}></PrivateRoute>
+            <PrivateRoute exact path="/add-education" component={AddEducation}></PrivateRoute>
           </Switch>
         </div>
       </Router>
