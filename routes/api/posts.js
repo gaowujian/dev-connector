@@ -35,6 +35,7 @@ router.post(
       const post = await newPost.save()
       res.json(post)
     } catch (err) {
+      console.log(err.message)
       res.status(500).send("Server Error")
     }
   }
@@ -57,12 +58,12 @@ router.get("/", auth, async (req, res) => {
 // @ access private
 router.get("/:id", auth, async (req, res) => {
   try {
-    const posts = await Post.findById(req.params.id).sort({ date: -1 })
-    res.json(posts)
+    const post = await Post.findById(req.params.id)
     if (!post) {
       return res.status().json({ msg: "Post not found" })
     }
-  } catch (error) {
+    res.json(post)
+  } catch (err) {
     if (err.kind === "ObjectId") {
       return res.status(404).json({ msg: "Post not found" })
     }
