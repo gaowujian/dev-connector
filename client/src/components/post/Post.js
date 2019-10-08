@@ -2,9 +2,9 @@ import React, { Fragment, useEffect } from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import Spinner from "../layout/Spinner"
-import { getPost } from "../../actions/post"
+import { getPost, addComment, deleteComment } from "../../actions/post"
 import PostItem from "../posts/PostItem"
-
+import CommentForm from "./CommentForm"
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getPost(match.params.id)
@@ -18,6 +18,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       ) : (
         <Fragment>
           <PostItem post={post} showActions={false} />
+          <CommentForm postId={post._id} />
         </Fragment>
       )}
     </Fragment>
