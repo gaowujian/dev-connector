@@ -1,114 +1,84 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p>
+# Dev Connector
 
-<h3 align="center">dev-community</h3>
+A platform for developers to connect. They can create their portofolio by adding their experience, education, skills and other important information of their professional career.
 
-<div align="center">
+Users can also create small posts and like/dislike and comment on other posts.
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+Live link: <a href="https://mighty-dusk-38771.herokuapp.com/" target="_blank"> Click here</a>
 
-</div>
+<img src="img/home.png">
 
 ---
 
-<p align="center"> Few lines describing your project.
-    <br> 
-</p>
+## Quick Start
 
-## 📝 Table of Contents
+```bash
+# clone repository
+https://github.com/gaowujian/dev-connector.git
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
-
-## 🧐 About <a name = "about"></a>
-
-Write about 1-2 paragraphs describing the purpose of your project.
-
-## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Give examples
+# Install dependencies
+cd dev-connector && npm install
 ```
 
-### Installing
+To run the development server:
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
-```
-Give the example
+```bash
+# the development server runs on port 3000
+npm run dev
 ```
 
-And repeat
+<img src="img/register.png">
 
-```
-until finished
-```
+---
 
-End with an example of getting some data out of the system or using it for a little demo.
+<img src="img/signin.png">
 
-## 🔧 Running the tests <a name = "tests"></a>
+---
 
-Explain how to run the automated tests for this system.
+<img src="img/developers.png">
 
-### Break down into end to end tests
+---
 
-Explain what these tests test and why
+<img src="img/dashboard.png">
 
-```
-Give an example
-```
+---
 
-### And coding style tests
+<img src="img/posts.png">
 
-Explain what these tests test and why
+---
 
-```
-Give an example
-```
+<img src="img/comments.png">
 
-## 🎈 Usage <a name="usage"></a>
+---
 
-Add notes about how to use the system.
+## Main Technologies
 
-## 🚀 Deployment <a name = "deployment"></a>
+### Client Side
 
-Add additional notes about how to deploy this on a live system.
+- [x] **[React](https://github.com/facebook/react)**
+- [x] **[Redux](https://github.com/reactjs/redux)**
+- [x] **[Twitter Bootstap 4](https://github.com/twbs/bootstrap/tree/v4-dev)**
+- [x] **[React-Router-DOM](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)**
 
-## ⛏️ Built Using <a name = "built_using"></a>
+#### Libraries used in Client-side
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [x] **[axios](https://github.com/axios/axios)**
+- [x] **[react-moment](https://github.com/headzoo/react-moment)**
+- [x] **[react-redux](https://github.com/reduxjs/react-redux)**
+- [x] **[redux-thunk](https://github.com/reduxjs/redux-thunk)**
+- [x] **[validator](https://github.com/chriso/validator.js)**
 
-## ✍️ Authors <a name = "authors"></a>
+### Server Side
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [x] **[Node.js / Express](https://github.com/expressjs/express)**
+- [x] **[MongoDB](https://github.com/mongodb/mongo)**
+- [x] **[JWT](https://github.com/auth0/node-jsonwebtoken)**
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+#### Libraries used in Server-side
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- [x] **[bcryptjs](https://github.com/dcodeIO/bcrypt.js)**
+- [x] **[gravatar](https://github.com/emerleite/node-gravatar)**
+- [x] **[mongoose](http://mongoosejs.com/)**
+- [x] **[jwt-decode](https://github.com/auth0/jwt-decode)**
+- [x] **[moment](https://momentjs.com/)**
+- [x] **[validator](https://github.com/chriso/validator.js)**
