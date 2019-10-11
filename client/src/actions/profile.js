@@ -45,11 +45,10 @@ export const getProfileById = (userId) => async dispatch => {
       payload: res.data
     })
   } catch (err) {
-    console.log(err.message)
-    // dispatch({
-    //   type: PROFILE_ERROR,
-    //   payload: { msg: err.response.statusText, status: err.response.status }
-    // })
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    })
   }
 }
 
@@ -156,7 +155,6 @@ export const addEducation = (formData, history) => async dispatch => {
 export const deleteExperience = id => async dispatch => {
   try {
     const res = await axios.delete(`/api/profile/experience/${id}`)
-    console.log(id)
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data

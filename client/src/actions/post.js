@@ -36,8 +36,7 @@ export const addLike = post_id => async dispatch => {
       payload: { post_id, likes: res.data }
     })
   } catch (err) {
-    console.log(err)
-    console.log(err.message)
+
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -64,7 +63,7 @@ export const removeLike = post_id => async dispatch => {
 // deletePost
 export const deletePost = post_id => async dispatch => {
   try {
-    const res = await axios.delete(`/api/posts/${post_id}`)
+    await axios.delete(`/api/posts/${post_id}`)
     dispatch({
       type: DELETE_POST,
       payload: post_id
@@ -105,7 +104,6 @@ export const getPost = post_id => async dispatch => {
       payload: res.data
     })
   } catch (err) {
-    console.log(err.message)
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -135,7 +133,7 @@ export const addComment = (post_id,formData) => async dispatch => {
 // delete Comment
 export const deleteComment = (post_id,commentId) => async dispatch => {
   try {
-    const res = await axios.delete(`/api/posts/comment/${post_id}/${commentId}`)
+   await axios.delete(`/api/posts/comment/${post_id}/${commentId}`)
 
     dispatch({
       type: REMOVE_COMMENT,

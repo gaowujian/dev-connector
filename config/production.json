@@ -1,0 +1,6 @@
+{
+    "mongoURI":"mongodb+srv://admin123:admin123@devcommunity-pj5wv.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret":"secretKey",
+    "githubClientId":"d51fd6c91cd9181064c7",
+    "githubSecret":"6bfc29d026e4cda750760fda95d2ba2c6bf00480"
+  }

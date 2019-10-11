@@ -78,7 +78,7 @@ export const login = (email, password) => async dispatch => {
     // 获取token
     dispatch(loadUser())
   } catch (err) {
-    console.log(err.message)
+
     const errors = err.response.data.errors
     if (errors) {
       errors.forEach(error => {
